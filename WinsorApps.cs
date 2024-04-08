@@ -9,6 +9,8 @@ namespace CS_First_HTTP_Client;
 /// sometimes this is just a message
 public readonly record struct Login(string email, string password);
 
-public readonly record struct ErrorResponse(string type string error);
+public readonly record struct ErrorResponse(string type, string error);
 
 public readonly record struct AuthResponse(string userID, string jwt, DateTime expires, string refreshToken);
+
+public readonly record struct UserInfo(string id, string firstName, string nickname, string lastName, string email);

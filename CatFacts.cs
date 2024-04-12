@@ -6,4 +6,5 @@ public readonly record struct CatFact(FactStatus status, string _id, string user
     string text, string source, DateTime updatedAt, string type, 
     DateTime createdAt, bool deleted, bool used);
     
-public readonly record struct CatFactShort(string text, string source, string type, DateTime createdAt);
+public readonly record struct CatFactShort(
+    string text, string source, string type, DateTime createdAt);

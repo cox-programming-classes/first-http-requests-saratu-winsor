@@ -1,34 +1,19 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using System.Collections.Immutable;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
 using System.Text.Json;
 using CS_First_HTTP_Client;
 
-string baseAddress = "https://cat-fact.herokuapp.com";
 
-using var client = new HttpClient();
-client.BaseAddress = new(baseAddress);
+await ApiService.Current.AuthenticateAsync(new ("saratu.waya@winsor.edu", "EGH966!@@chi"));
+//var user = await ApiService.Current.SendAsync<UserInfo>(HttpMethod.Get, "api/users/self");
+//Console.WriteLine(user);
 
-var request = new HttpRequestMessage(HttpMethod.Get, "facts");
+var cycleDays = await ApiService.Current.SendAsync<ImmutableArray<CycleDay>>(HttpMethod.Get, "api/schedule/cycle-day");
 
-var response = client.Send(request);
-
-if (response.IsSuccessStatusCode)
+foreach (var day in cycleDays)
 {
-    var content = (List<CatFact>?)JsonSerializer.Deserialize(
-        response.Content.ReadAsStream(), typeof(List<CatFact>));
-
-    if (content is null)
-    {
-        Console.WriteLine("Something went wrong...");
-        return;
-    }
-
-    foreach (var fact in content)
-    {
-        Console.WriteLine(fact.text);
-    }
-}
-else
-{
-    Console.WriteLine($"Request failed with status code {response.StatusCode}");
+    Console.WriteLine($"{day.date:dddd dd MMMM} is {day.cycleDay}");
 }

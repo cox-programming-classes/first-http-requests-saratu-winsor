@@ -28,4 +28,6 @@ public readonly record struct StudentInfo(
 public readonly record struct AdvisorInfo(
     string id, string firstName, string lastName, string email);
 
-public readonly record struct CycleDay(DateOnly date, string cycleDay);   
+public readonly record struct CycleDay(DateOnly date, string cycleDay);
+
+public readonly record struct Schedule();

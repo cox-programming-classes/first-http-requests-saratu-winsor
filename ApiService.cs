@@ -5,6 +5,7 @@ using System.Text.Json;
 
 namespace CS_First_HTTP_Client;
 
+
 /// <summary>
 /// This service is responsible for handling all interations with
 /// the Winsor Apps API. All other services written that need to
